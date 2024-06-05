@@ -1,0 +1,209 @@
+[versions]
+# Project
+kotlin = "1.9.23"
+android_gradle_plugin = "8.3.0"
+
+# Plugins
+ksp = "1.9.23-1.0.19"
+
+
+# KotlinX
+kotlinx_coroutines = "1.8.1-Beta"
+kotlinx_serialization = "1.6.3"
+kotlinx_collections_immutable = "0.3.7"
+kotlinx_datetime = "0.6.0-RC.2"
+
+# AndroidX
+activity = "1.8.2"
+core = "1.12.0"
+appcompat = "1.6.1"
+glance = "1.1.0-beta02"
+glance_widget = "1.1.0-beta02"
+material = "1.12.0-beta01"
+corektx = "1.12.0"
+datastore = "1.0.0"
+workmanager = "2.9.0"
+lifecycle_viewmodel = "2.7.0"
+
+#Compose
+compose_compiler = "1.5.11"
+compose_activity = "1.8.2"
+compose_bom = "2024.04.00"
+compose_material3 = "1.2.1"
+compose_icons = "1.4.2"
+compose_windowsizeclass = "0.5.0"
+jb_compose_compiler = "1.5.11"
+
+#Hilt
+hilt = "2.51"
+
+#Room
+room = "2.6.1"
+
+# Accompanist
+accompanist = "0.32.0"
+accompanits_nav = "0.35.0-alpha"
+
+# Moko
+moko = "0.16.1"
+moko_parcelize = "0.9.0"
+moko_resources = "0.23.0"
+moko_permissions = "0.16.0"
+
+# General dependencies
+logging = "3.0.5"
+logback = "1.2.11"
+logcat = "0.1"
+
+# Test
+test_junit = "4.13.2"
+test_runner = "1.5.2"
+test_core = "1.5.0"
+test_mockk = "1.13.10"
+test_uiautomator = "2.3.0"
+test_junitext = "1.1.5"
+test_barista = "4.3.0"
+test_orchestrator = "1.4.2"
+test_rules = "1.5.0"
+test_hamcrest = "2.2"
+
+# Navigation
+voyager = "1.0.0"
+compose_nav = "2.7.7"
+
+# Quality
+ktlint = "0.50.0"
+detekt = "1.22.0"
+composerules = "0.0.26"
+
+# Koin
+koin_bom = "3.6.0-wasm-alpha2"
+koin_test = "3.6.0-wasm-alpha2"
+koin_compose = "3.6.0-wasm-alpha2"
+koin_android = "3.6.0-wasm-alpha2"
+koin_compose_jb = "1.1.0"
+
+# License
+aboutlibraries = "10.9.2"
+jetbrains-kotlin-jvm = "1.9.0"
+espresso-core = "3.5.1"
+ui-tooling = "1.6.5"
+compose-preview-renderer = "0.0.1-alpha01"
+
+[libraries]
+# Project
+android_gradle_plugin = { module = "com.android.tools.build:gradle", version.ref = "android_gradle_plugin" }
+kotlin_gradle_plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+
+# General dependencies
+logging = { module = "io.github.microutils:kotlin-logging", version.ref = "logging" }
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+logcat = { module = "com.squareup.logcat:logcat", version.ref = "logcat" }
+
+# KotlinX
+kotlinx_coroutines_core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinx_coroutines" }
+kotlinx_coroutines_test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx_coroutines" }
+kotlinx_serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx_serialization" }
+kotlinx_collections_immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx_collections_immutable" }
+kotlinx_datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinx_datetime" }
+
+# AndroidX
+androidx_glance = { module = "androidx.glance:glance", version.ref = "glance"}
+androidx_glance_widget = { module = "androidx.glance:glance-appwidget", version.ref = "glance_widget"}
+androidx_glance_material3 = { module = "androidx.glance:glance-material3", version.ref = "glance_widget"}
+
+androidx_activity = { module = "androidx.activity:activity", version.ref = "activity" }
+androidx_core = { module = "androidx.core:core", version.ref = "core" }
+androidx_appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx_material = { module = "com.google.android.material:material", version.ref = "material" }
+androidx_corektx = { module = "androidx.core:core-ktx", version.ref = "corektx" }
+androidx_datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+androidx_workmanager = { module = "androidx.work:work-runtime-ktx", version.ref = "workmanager" }
+androidx_lifecycle_viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycle_viewmodel" }
+
+# Room
+androidx_room_runtime = { module = "androidx.room:room-runtime", version.ref = "room"}
+androidx_room_compiler = { module = "androidx.room:room-compiler", version.ref = "room"}
+androidx_room_ktx = { module = "androidx.room:room-ktx", version.ref = "room"}
+androidx_room_test = { module = "androidx.room:room-testing",version.ref = "room" }
+
+compose_bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose_bom" }
+compose_ui = { module = "androidx.compose.ui:ui" }
+compose_toolingpreview = { module = "androidx.compose.ui:ui-tooling-preview" }
+compose_icons = { module = "androidx.compose.material:material-icons-extended" }
+compose_material3 = { module = "androidx.compose.material3:material3" }
+compose_uitest = { module = "androidx.compose.ui:ui-test" }
+compose_junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+compose_manifest = { module = "androidx.compose.ui:ui-test-manifest" }
+compose_windowsizeclass = { module = "dev.chrisbanes.material3:material3-window-size-class-multiplatform", version.ref = "compose_windowsizeclass" }
+
+# Dynamic Feature don't recognize BOM
+compose_activity = { module = "androidx.activity:activity-compose", version.ref = "compose_activity" }
+
+#Koin
+koin_core = { module = "io.insert-koin:koin-core", version.ref = "koin_bom"}
+koin_android = { module = "io.insert-koin:koin-android", version.ref = "koin_bom" }
+koin_compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin_bom"}
+koin_test = { module = "io.insert-koin:koin-test",version.ref = "koin_bom"}
+
+
+# Accompanist
+accompanist_permission = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
+accompanits_navigation = { module = "com.google.accompanist:accompanist-navigation-material", version.ref = "accompanits_nav"}
+
+# SQLDelight
+
+
+# Moko
+moko_mvvm_core = { module = "dev.icerock.moko:mvvm-core", version.ref = "moko" }
+moko_mvvm_compose = { module = "dev.icerock.moko:mvvm-flow-compose", version.ref = "moko" }
+moko_resources_generator = { module = "dev.icerock.moko:resources-generator", version.ref = "moko_resources" }
+moko_resources_core = { module = "dev.icerock.moko:resources", version.ref = "moko_resources" }
+moko_resources_compose = { module = "dev.icerock.moko:resources-compose", version.ref = "moko_resources" }
+moko_parcelize = { module = "dev.icerock.moko:parcelize", version.ref = "moko_parcelize" }
+moko_permissions_compose = { module = "dev.icerock.moko:permissions-compose", version.ref = "moko_permissions" }
+
+# Navigation
+voyager_navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager_bottomsheet = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
+compose_navigation = {module = "androidx.navigation:navigation-compose", version.ref = "compose_nav"}
+
+
+# Test
+test_junit = { module = "junit:junit", version.ref = "test_junit" }
+test_runner = { module = "androidx.test:runner", version.ref = "test_runner" }
+test_core = { module = "androidx.test:core", version.ref = "test_core" }
+test_corektx = { module = "androidx.test:core-ktx", version.ref = "test_core" }
+test_uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "test_uiautomator" }
+test_junitext = { module = "androidx.test.ext:junit", version.ref = "test_junitext" }
+test_mockk = { module = "io.mockk:mockk", version.ref = "test_mockk" }
+test_barista = { module = "com.adevinta.android:barista", version.ref = "test_barista" }
+test_orchestrator = { module = "androidx.test:orchestrator", version.ref = "test_orchestrator" }
+test_rules = { module = "androidx.test:rules", version.ref = "test_rules" }
+test_hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "test_hamcrest" }
+test_hilt = {module = "com.google.dagger:hilt-android-testing", version.ref = "hilt"}
+
+# Quality
+ktlint = { module = "com.pinterest:ktlint", version.ref = "ktlint" }
+detekt = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detekt" }
+composerules = { module = "com.twitter.compose.rules:detekt", version.ref = "composerules" }
+
+# License
+aboutlibraries_plugin = { module = "com.mikepenz.aboutlibraries.plugin:aboutlibraries-plugin", version.ref = "aboutlibraries" }
+aboutlibraries_ui = { module = "com.mikepenz:aboutlibraries-compose", version.ref = "aboutlibraries" }
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-core" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "ui-tooling" }
+
+[bundles]
+compose = ["compose.ui", "compose.toolingpreview", "compose.icons", "compose.material3"]
+composetest = ["compose.uitest", "compose.junit4", "compose.manifest"]
+
+[plugins]
+kotlin_serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+compose = { id = "org.jetbrains.compose", version.ref = "compose_compiler" }
+androidApplication = { id = "com.android.application", version.ref = "android_gradle_plugin" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidLibrary = { id = "com.android.library", version.ref = "android_gradle_plugin" }
+jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
