@@ -10,10 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -23,6 +25,11 @@ import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.unit.dp
 import com.composeit.preference.R
 import com.composeit.preference.model.AppThemeOptions
+import com.libraries.core.extension.openUrl
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.filter
+import org.koin.compose.koinInject
 
 @Composable
 internal fun PreferenceItem(
@@ -111,5 +118,31 @@ internal fun OpenSourceLibraryItem(onOpenSourceClick: () -> Unit) {
         title = stringResource(id = R.string.preference_title_open_source),
         onItemClick = onOpenSourceClick,
     )
+}
+
+
+@Composable
+@Suppress("MagicNumber")
+internal fun VersionItem() {
+    val title = stringResource(id = R.string.preference_title_version)
+    val context = LocalContext.current
+    val version = "1"
+    var numberOfClicks by remember { mutableStateOf(0) }
+    val onClick = {
+        if (++numberOfClicks == 7) {
+            context.openUrl("sds.d")
+        }
+    }
+
+    LaunchedEffect(Unit) {
+        snapshotFlow { numberOfClicks }
+            .filter { it > 0 }
+            .collectLatest {
+                delay(1_000)
+                numberOfClicks = 0
+            }
+    }
+
+    PreferenceItem(title = title, description = version, onItemClick = onClick)
 }
 

@@ -14,6 +14,8 @@ object Destinations {
 
     const val Tracker = "tracker"
 
+    const val OpenSource = "open_source"
+
     object BottomSheet {
 
         const val Category = "bottom_sheet_category"

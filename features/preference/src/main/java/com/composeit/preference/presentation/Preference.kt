@@ -14,9 +14,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.composeit.design.ComposeItTheme
 import com.composeit.preference.R
 import com.composeit.preference.model.AppThemeOptions
+import org.koin.androidx.compose.getViewModel
 import org.koin.androidx.compose.koinViewModel
 import java.security.SecurityPermission
 
@@ -34,13 +37,14 @@ fun PreferenceSection(
         onOpenSourceClick = onOpenSourceClick,
     )
 }
+
 @Composable
 private fun PreferenceLoader(
     onAboutClick: () -> Unit,
     onTrackerClick: () -> Unit,
     onOpenSourceClick: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: PreferenceViewModel = koinViewModel(),
+    viewModel: PreferenceViewModel = getViewModel(),
 ) {
     val theme by remember(viewModel) {
         viewModel.loadCurrentTheme()
@@ -55,6 +59,8 @@ private fun PreferenceLoader(
         onThemeUpdate = viewModel::updateTheme,
     )
 }
+
+@Suppress("LongParameterList")
 @Composable
 internal fun PreferenceContent(
     onAboutClick: () -> Unit,
@@ -62,33 +68,36 @@ internal fun PreferenceContent(
     onOpenSourceClick: () -> Unit,
     theme: AppThemeOptions,
     onThemeUpdate: (AppThemeOptions) -> Unit,
-    modifier: Modifier = Modifier
-){
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = modifier.fillMaxSize()) {
         PreferenceTitle(title = stringResource(id = R.string.preference_title_features))
         TrackerItem(onTrackerClick)
         Separator()
         PreferenceTitle(title = stringResource(id = R.string.preference_title_settings))
         ThemeItem(currentTheme = theme, onThemeUpdate = onThemeUpdate)
-        AboutItem(onAboutClick)
+        AboutItem(onAboutClick = onAboutClick)
         OpenSourceLibraryItem(onOpenSourceClick = onOpenSourceClick)
-
+        VersionItem()
     }
-
-
-
 }
 
 @Composable
-private fun Separator(){
+private fun Separator() {
     Spacer(
         modifier = Modifier
             .padding(bottom = 8.dp)
             .height(1.dp)
             .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.7F))
+            .background(MaterialTheme.colorScheme.outline.copy(alpha = 0.7F)),
     )
+}
+
+@Suppress("UndocumentedPublicFunction")
+@Preview
+@Composable
+fun PreferencePreview() {
+    ComposeItTheme {
+        PreferenceSection(onAboutClick = {}, onTrackerClick = {}, onOpenSourceClick = {})
+    }
 }

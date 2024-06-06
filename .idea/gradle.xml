@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$/features/preference" />
             <option value="$PROJECT_DIR$/features/search" />
             <option value="$PROJECT_DIR$/features/task" />
+            <option value="$PROJECT_DIR$/features/tracker" />
             <option value="$PROJECT_DIR$/libraries" />
             <option value="$PROJECT_DIR$/libraries/core" />
             <option value="$PROJECT_DIR$/libraries/design" />

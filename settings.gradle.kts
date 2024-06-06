@@ -1,4 +1,7 @@
 pluginManagement {
+
+
+
     repositories {
         google {
             content {
@@ -11,6 +14,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -37,3 +41,4 @@ include(":features:category")
 include(":features:preference")
 include(":features:glance")
 include(":features:search")
+include(":features:tracker")

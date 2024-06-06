@@ -1,6 +1,7 @@
 package com.composeit.task.presentation.list
 
 import android.text.format.DateUtils
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,20 +33,18 @@ import java.util.Calendar
 
 @Composable
 internal fun TaskItem(
-    task:TaskWithCategory,
+    task: TaskWithCategory,
     onItemClick: (Long) -> Unit,
     onCheckedChange: (TaskWithCategory) -> Unit,
-    modifier: Modifier = Modifier
-){
+    modifier: Modifier = Modifier,
+) {
     ElevatedCard(
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         modifier = modifier
             .fillMaxWidth()
             .padding(all = 8.dp)
             .height(74.dp)
-            .clickable {
-                onItemClick(task.task.id)
-            }
+            .clickable { onItemClick(task.task.id) },
     ) {
         Row {
             CardRibbon(colorInt = task.category?.color)
@@ -53,14 +52,10 @@ internal fun TaskItem(
                 modifier = Modifier
                     .fillMaxHeight(),
                 selected = task.task.completed,
-                onClick = { onCheckedChange(task) }
+                onClick = { onCheckedChange(task) },
             )
             Spacer(Modifier.width(8.dp))
-            Column(
-                modifier = Modifier
-                    .fillMaxHeight(),
-                verticalArrangement = Arrangement.Center
-            ) {
+            Column(modifier = Modifier.fillMaxHeight(), verticalArrangement = Arrangement.Center) {
                 Text(
                     text = task.task.title,
                     style = MaterialTheme.typography.bodyLarge,
@@ -68,27 +63,34 @@ internal fun TaskItem(
                     maxLines = 1,
                 )
                 RelativeDateText(calendar = task.task.dueDate)
-
             }
         }
-
     }
 }
 
 @Composable
-internal fun CardRibbon(colorInt: Int?, modifier: Modifier = Modifier){
-    val ribbonColor = if (colorInt != null){
+internal fun CardRibbon(colorInt: Int?, modifier: Modifier = Modifier) {
+    val ribbonColor = if (colorInt != null) {
         Color(colorInt)
-    } else{
+    } else {
         MaterialTheme.colorScheme.surfaceVariant
     }
+
+    Spacer(
+        modifier
+            .width(18.dp)
+            .fillMaxHeight()
+            .padding(end = 8.dp)
+            .background(ribbonColor),
+    )
 }
 
 @Composable
-internal fun RelativeDateText(calendar: Calendar?){
-    if (calendar == null){
+internal fun RelativeDateText(calendar: Calendar?) {
+    if (calendar == null) {
         return
     }
+
     val context = LocalContext.current
     val time = calendar.time.time
     val stringTime = DateUtils
@@ -100,12 +102,13 @@ internal fun RelativeDateText(calendar: Calendar?){
             0,
         )
         .toString()
+
     Text(
         text = stringTime,
         style = MaterialTheme.typography.bodySmall,
         overflow = TextOverflow.Ellipsis,
-        maxLines = 1
-        )
+        maxLines = 1,
+    )
 }
 
 @Preview

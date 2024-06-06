@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewDynamicColors
 import androidx.compose.ui.unit.dp
+import com.composeit.design.R
 
 @Composable
 fun DefaultIconTextContent(
@@ -98,22 +99,21 @@ fun ComposeItTopAppBar(
 
 @Composable
 fun ComposeItFloatingButton(
-    onClick: () -> Unit,
-    contentDescription: String,
+    @StringRes contentDescription: Int,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit,
 ) {
     FloatingActionButton(
         containerColor = MaterialTheme.colorScheme.primary,
-        onClick = onClick,
         modifier = modifier,
-    ){
+        onClick = onClick,
+    ) {
         Icon(
             imageVector = Icons.Outlined.Add,
-            contentDescription = contentDescription
+            contentDescription = stringResource(id = contentDescription),
         )
     }
 }
-
 @Composable
 fun ComposeItTextField(
     label:String,

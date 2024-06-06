@@ -38,7 +38,7 @@ internal class MainActivity : ComponentActivity() {
         setContent {
             val isDarkTheme = rememberIsDarkTheme()
             updateTheme(isDarkTheme)
-            ComposeItTheme {
+            ComposeItTheme(isDarkTheme = isDarkTheme) {
                 NavGraph(windowSizeClass = calculateWindowSizeClass())
             }
         }

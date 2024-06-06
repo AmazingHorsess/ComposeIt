@@ -20,10 +20,12 @@ import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
 import com.composeit.category.presentation.bottomsheet.CategoryBottomSheet
 import com.composeit.preference.presentation.About
+import com.composeit.preference.presentation.OpenSource
 import com.composeit.presentation.home.EmptyComposable
 import com.composeit.presentation.home.Home
 import com.composeit.task.presentation.add.AddTaskBottomSheet
 import com.composeit.task.presentation.detail.main.TaskDetailSection
+import com.composeit.tracker.presentation.TrackerSection
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.navigation.material.ModalBottomSheetLayout
 import com.google.accompanist.navigation.material.bottomSheet
@@ -45,48 +47,41 @@ fun NavGraph(
             navController = navController,
             startDestination = startDestination
         ){
-            homeGraph(windowSizeClass,actions)
+            homeGraph(windowSizeClass, actions)
             taskGraph(actions)
-            categoryGraph(actions)
             preferencesGraph(actions)
             categoryGraph(actions)
-
-
         }
         
     }
 }
 
-private fun NavGraphBuilder.homeGraph(
-    windowSizeClass: WindowSizeClass,
-    actions: Actions
-){
+private fun NavGraphBuilder.homeGraph(windowSizeClass: WindowSizeClass, actions: Actions) {
     composable(
         route = Destinations.Home,
-        deepLinks = listOf( navDeepLink { uriPattern = DestinationDeepLink.HomePattern }),
+        deepLinks = listOf(navDeepLink { uriPattern = DestinationDeepLink.HomePattern }),
         enterTransition = {
             slideIntoContainer(
                 AnimatedContentTransitionScope.SlideDirection.Right,
-                animationSpec = tween(700)
+                animationSpec = tween(700),
             )
         },
         exitTransition = {
             slideOutOfContainer(
                 AnimatedContentTransitionScope.SlideDirection.Left,
-                animationSpec = tween(700)
+                animationSpec = tween(700),
             )
         },
-    ){
+    ) {
         Home(
             windowSizeClass = windowSizeClass,
             onTaskClick = actions.openTaskDetail,
             onAboutClick = actions.openAbout,
             onTrackerClick = actions.openTracker,
-            onOpenSourceClick = actions.openTracker,
+            onOpenSourceClick = actions.openOpenSource,
             onTaskSheetOpen = actions.openTaskBottomSheet,
-            onCategorySheetOpen = actions.openCategoryBottomSheet
+            onCategorySheetOpen = actions.openCategoryBottomSheet,
         )
-
     }
 }
 
@@ -154,29 +149,26 @@ private fun NavGraphBuilder.preferencesGraph(actions: Actions) {
     composable(route = Destinations.About) {
         About(onUpPress = actions.navigateUp)
     }
+    composable(route = Destinations.OpenSource) {
+        OpenSource(onUpPress = actions.navigateUp)
+    }
+    composable(route = Destinations.Tracker) {
+        TrackerSection(
+            onUpPress = actions.navigateUp
+        )
+
+
+    }
 
 }
 
-//private fun NavGraphBuilder.trackerGraph(
-//    context: Context,
-//    actions: Actions,
-//) {
-//    dialog(Destinations.Tracker) {
-//        LoadFeature(
-//            context = context,
-//            featureName = FeatureTracker,
-//            onDismiss = actions.navigateUp,
-//        ) {
-//            // Workaround to be able to use Dynamic Feature with Compose
-//            // https://issuetracker.google.com/issues/183677219
-//            val intent = Intent(Intent.ACTION_VIEW).apply {
-//                data = Uri.parse(TrackerDeepLink)
-//                `package` = context.packageName
-//            }
-//            context.startActivity(intent)
-//        }
-//    }
-//}
+private fun NavGraphBuilder.trackerGraph(
+    context: Context,
+    actions: Actions,
+) {
+
+
+}
 
 
 
@@ -186,6 +178,9 @@ internal data class Actions (
 ){
     val openTaskDetail: (Long) -> Unit = { taskId ->
         navController.navigate("${Destinations.TaskDetail}/$taskId")
+    }
+    val openOpenSource: () -> Unit = {
+        navController.navigate(Destinations.OpenSource)
     }
 
     val openAbout: () -> Unit = {

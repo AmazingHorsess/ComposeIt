@@ -11,6 +11,7 @@ import com.composeit.preference.di.preferenceModule
 import com.composeit.repository.di.repositoryModule
 import com.composeit.search.di.searchModule
 import com.composeit.task.di.taskModule
+import com.composeit.tracker.di.trackerModule
 import com.composeitdatastore.di.dataStoreModule
 import com.libraries.core.di.coreModule
 
@@ -51,5 +52,6 @@ class ComposeItApp : Application(){
         repositoryModule,
         localModule,
         dataStoreModule,
+        trackerModule,
     )
 }

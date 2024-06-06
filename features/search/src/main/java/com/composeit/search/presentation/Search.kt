@@ -54,7 +54,7 @@ fun SearchSection(modifier: Modifier = Modifier, onItemClick: (Long) -> Unit) {
 private fun SearchLoader(
     onItemClick: (Long) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: SearchViewModel = koinViewModel(),
+    viewModel: SearchViewModel = getViewModel(),
 ) {
     val (query, setQuery) = rememberSaveable { mutableStateOf("") }
     val viewState by remember(viewModel, query) {
@@ -76,25 +76,25 @@ internal fun SearchScaffold(
     onItemClick: (Long) -> Unit,
     query: String,
     setQuery: (String) -> Unit,
-    modifier: Modifier = Modifier
-){
+    modifier: Modifier = Modifier,
+) {
     Scaffold(
-        modifier = modifier.fillMaxSize()
-    ){ padding ->
+        modifier = modifier.fillMaxSize(),
+    ) { padding ->
         Column(
             modifier = Modifier
                 .padding(padding)
-                .fillMaxWidth()
+                .fillMaxWidth(),
         ) {
-            SearchTextField(text = query, onTextChange = setQuery)
+            SearchTextField(query, onTextChange = setQuery)
 
-            Crossfade(viewState, label = ""){ state ->
-                when(state){
+            Crossfade(viewState) { state ->
+                when (state) {
                     SearchViewState.Loading -> ComposeItLoadingContent()
-                    SearchViewState.Empty -> SearchListEmptyContent()
+                    SearchViewState.Empty -> SearchEmptyContent()
                     is SearchViewState.Loaded -> SearchListContent(
                         taskList = state.taskList,
-                        onItemClick = onItemClick
+                        onItemClick = onItemClick,
                     )
                 }
             }
@@ -102,73 +102,58 @@ internal fun SearchScaffold(
     }
 }
 
-
 @Composable
-private fun SearchTextField(
-    text: String,
-    onTextChange: (String) -> Unit
-){
+private fun SearchTextField(text: String, onTextChange: (String) -> Unit) {
     TextField(
-        value = text ,
+        value = text,
         onValueChange = onTextChange,
         trailingIcon = {
-            Icon(imageVector = Icons.Default.Search,
-                contentDescription = stringResource(id = R.string.search_cd_icon)
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = stringResource(id = R.string.search_cd_icon),
             )
         },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp)
+            .padding(12.dp),
     )
-
 }
 
 @Composable
-private fun SearchListEmptyContent(){
+private fun SearchEmptyContent() {
     DefaultIconTextContent(
-        icon = Icons.AutoMirrored.Outlined.ExitToApp,
-        text = R.string.search_header_empty ,
-        iconContentDescription = R.string.search_cd_empty_list
+        icon = Icons.Outlined.ExitToApp,
+        iconContentDescription = R.string.search_cd_empty_list,
+        text = R.string.search_header_empty,
     )
 }
 
 @Composable
 private fun SearchListContent(
     taskList: List<TaskSearchItem>,
-    onItemClick: (Long) -> Unit
-){
+    onItemClick: (Long) -> Unit,
+) {
     LazyColumn {
         items(
             items = taskList,
-            itemContent = { task ->
-                SearchItem(
-                    task = task,
-                    onItemClick = onItemClick
-                )
-            }
+            itemContent = { task -> SearchItem(task = task, onItemClick = onItemClick) },
         )
-
     }
 }
 
 @Composable
-private fun SearchItem(
-    task: TaskSearchItem,
-    onItemClick: (Long) -> Unit
-){
+private fun SearchItem(task: TaskSearchItem, onItemClick: (Long) -> Unit) {
     Column(
         modifier = Modifier
             .height(48.dp)
             .fillMaxWidth()
-            .clickable {
-                onItemClick(task.id)
-            },
+            .clickable { onItemClick(task.id) },
         verticalArrangement = Arrangement.Center,
     ) {
         val textDecoration: TextDecoration
         val circleColor: Color
 
-        if (task.completed){
+        if (task.completed) {
             textDecoration = TextDecoration.LineThrough
             circleColor = MaterialTheme.colorScheme.outline
         } else {
@@ -176,15 +161,12 @@ private fun SearchItem(
             circleColor = task.categoryColor ?: MaterialTheme.colorScheme.surfaceVariant
         }
 
-        Row(
-            modifier = Modifier
-                .padding(horizontal = 16.dp)
-        ) {
+        Row(modifier = Modifier.padding(horizontal = 16.dp)) {
             Box(
                 modifier = Modifier
                     .size(24.dp)
                     .clip(CircleShape)
-                    .background(circleColor)
+                    .background(circleColor),
             )
             Text(
                 text = task.title,
@@ -192,14 +174,12 @@ private fun SearchItem(
                 modifier = Modifier
                     .padding(horizontal = 12.dp)
                     .fillMaxWidth()
-                    .height(24.dp)
+                    .height(24.dp),
             )
-
         }
-
     }
-
 }
+
 
 @Suppress("UndocumentedPublicFunction")
 @Preview

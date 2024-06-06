@@ -5,7 +5,7 @@
     <string name="preference_title_tracker">Task Tracker</string>
 
     <string name="about_title" translatable="false">ComposeIt</string>
-    <string name="about_description">ComposeIt (to begin, to start in Finnish) is a simple to-do list to make your life easier.\n\nIt all started when I created a project to learn and keep me updated about the latest Android components and libraries. </string>
+    <string name="about_description">ComposeIt is a simple to-do list to make your life easier.\n\nIt all started when I created a project to learn and keep me updated about the latest Android components and libraries. </string>
     <string name="about_button_project">Visit project on GitHub</string>
     <string name="about_cd_github" translatable="false">GitHub</string>
     <string name="preference_title_app_theme">App theme</string>

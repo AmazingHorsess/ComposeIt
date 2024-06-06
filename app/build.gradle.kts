@@ -2,6 +2,10 @@ plugins {
 
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.mikepenz.aboutlibraries.plugin")
+
+
+
 
 }
 
@@ -75,7 +79,8 @@ dependencies {
     implementation(project(":data:local"))
     implementation(project(":features:alarm"))
     implementation(project(":features:preference"))
-    implementation(project(":features:preference"))
+    implementation(project(":features:tracker"))
+
     implementation(project(":features:glance"))
     implementation(project(":features:search"))
     implementation(project(":features:task"))

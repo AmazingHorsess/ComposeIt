@@ -126,7 +126,7 @@ internal fun TaskListScaffold(
         floatingActionButton = {
             ComposeItFloatingButton(
                 onClick = { taskHandler.onAddClick() },
-                contentDescription = stringResource(R.string.task_cd_add_task)
+                contentDescription = R.string.task_cd_add_task
             )
         },
         floatingActionButtonPosition = FabPosition.Center

@@ -53,6 +53,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.compose.toolingpreview)
     debugImplementation(libs.ui.tooling)
+    implementation(libs.aboutlibraries.ui)
 
 
     implementation(libs.compose.activity)

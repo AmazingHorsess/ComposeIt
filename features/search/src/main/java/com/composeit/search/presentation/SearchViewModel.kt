@@ -19,6 +19,7 @@ internal class SearchViewModel(
             } else {
                 SearchViewState.Empty
             }
+            emit(state)
 
         }
     }
@@ -26,6 +27,4 @@ internal class SearchViewModel(
         val searchList = mapper.toView(taskList)
         return SearchViewState.Loaded(searchList)
     }
-
-
 }
