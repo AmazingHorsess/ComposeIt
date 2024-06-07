@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.mylibrary"
+    namespace = "com.composeit.tracker"
     compileSdk = 34
 
     defaultConfig {
@@ -30,10 +30,28 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures{
+        compose  = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
+    }
 }
 
 dependencies {
+    implementation(project(":domain"))
+    implementation(project(":libraries:design"))
 
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
+
+    implementation(libs.compose.toolingpreview)
+    debugImplementation(libs.ui.tooling)
+
+
+    implementation(libs.compose.activity)
+    implementation(libs.bundles.compose)
+    implementation(platform(libs.compose.bom))
     implementation(libs.androidx.corektx)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.material)
