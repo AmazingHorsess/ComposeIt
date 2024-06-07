@@ -11,6 +11,7 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_task_list_info" />
+
         </receiver>
     </application>
 
