@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.voyager.navigator)
     implementation(libs.voyager.bottomsheet)
+    implementation(libs.splash.api)
 
     implementation(project(":data:datastore"))
     implementation(project(":data:repository"))

@@ -2,4 +2,14 @@
 <resources>
 
     <style name="Theme.ComposeIt" parent="android:Theme.Material.Light.NoActionBar" />
+
+
+    <style name="Theme.Compose.Splash" parent="Theme.SplashScreen">
+
+
+    </style>
+    <style name="Theme.SplashScreen.MySplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/avd_anim</item>
+        <item name="postSplashScreenTheme">@style/Theme.ComposeIt</item>
+    </style>
 </resources>
