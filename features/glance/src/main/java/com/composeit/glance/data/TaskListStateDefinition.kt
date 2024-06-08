@@ -21,25 +21,28 @@ internal object TaskListStateDefinition : GlanceStateDefinition<List<Task>> {
 
     private val Context.datastore by dataStore(DATA_STORE_FILENAME, TaskListSerializer)
 
-
     override suspend fun getDataStore(
         context: Context,
         fileKey: String,
     ): DataStore<List<Task>> =
         context.datastore
 
-
     override fun getLocation(context: Context, fileKey: String): File =
         context.dataStoreFile(DATA_STORE_FILENAME)
 
-    suspend fun updateData(
-        context: Context,
-        newTasks: List<Task>,
-    ) = getDataStore(context, DATA_STORE_FILENAME).updateData { newTasks }
+    /**
+     * Updates the underlying [DataStore] data.
+     * @param context Context to get datastore
+     * @param newTasks List of new contents that are to be updated
+     */
+    suspend fun updateData(context: Context, newTasks: List<Task>) =
+        getDataStore(context, DATA_STORE_FILENAME).updateData { newTasks }
 
-
-
-    object TaskListSerializer: Serializer<List<Task>>{
+    /**
+     * Custom serializer to write and read data from [DataStore].
+     */
+    @OptIn(ExperimentalSerializationApi::class)
+    object TaskListSerializer : Serializer<List<Task>> {
 
         override val defaultValue: List<Task>
             get() = listOf()
@@ -48,11 +51,6 @@ internal object TaskListStateDefinition : GlanceStateDefinition<List<Task>> {
             Json.decodeFromStream(input)
 
         override suspend fun writeTo(t: List<Task>, output: OutputStream) =
-            Json.encodeToStream(t,output)
-
-
+            Json.encodeToStream(t, output)
     }
-
-
-
 }

@@ -1,4 +1,4 @@
-package com.example.mylibrary
+package com.composeit.tracker
 
 import org.junit.Test
 

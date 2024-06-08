@@ -15,7 +15,9 @@ internal class TaskListGlanceReceiver: GlanceAppWidgetReceiver() {
         TaskListUpdaterWorker.cancel(context)
     }
 
-    override fun onReceive(context: Context, intent: Intent) {
-        super.onReceive(context, intent)
-        TaskListUpdaterWorker.enqueue(context)    }
+    override fun onEnabled(context: Context) {
+        super.onEnabled(context)
+        TaskListUpdaterWorker.enqueue(context)
+
+    }
 }
