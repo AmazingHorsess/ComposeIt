@@ -51,8 +51,6 @@ fun TaskListSection(
     TaskListLoader(onItemClick = onItemClick, onAddClick = onBottomShow, modifier = modifier )
 
 }
-
-
 @Composable
 private fun TaskListLoader(
     onItemClick: (Long) -> Unit,

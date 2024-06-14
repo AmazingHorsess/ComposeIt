@@ -162,13 +162,7 @@ private fun NavGraphBuilder.preferencesGraph(actions: Actions) {
 
 }
 
-private fun NavGraphBuilder.trackerGraph(
-    context: Context,
-    actions: Actions,
-) {
 
-
-}
 
 
 

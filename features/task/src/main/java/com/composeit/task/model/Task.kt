@@ -13,7 +13,6 @@ data class Task(
     val completedDate: Calendar? = null,
     val isRepeating: Boolean = false,
     val alarmInterval: AlarmInterval? = null,
-
     )
 
 

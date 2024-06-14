@@ -36,7 +36,6 @@ class ComposeItApp : Application(){
             androidContext(this@ComposeItApp)
             modules(getAllModules())
         }
-
     }
 
     internal fun getAllModules(): List<Module> = listOf(
