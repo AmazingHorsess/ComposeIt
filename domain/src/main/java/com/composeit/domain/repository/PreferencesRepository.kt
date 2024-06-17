@@ -1,4 +1,4 @@
-package com.composeit.domain.usecase.preferences
+package com.composeit.domain.repository
 
 import com.composeit.domain.model.AppThemeOptions
 import kotlinx.coroutines.flow.Flow
